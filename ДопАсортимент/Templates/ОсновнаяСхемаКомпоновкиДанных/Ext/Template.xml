@@ -9,6 +9,12 @@
 		<field xsi:type="DataSetFieldField">
 			<dataPath>Номенклатура</dataPath>
 			<field>Номенклатура</field>
+			<title xsi:type="v8:LocalStringType">
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Номенклатура</v8:content>
+				</v8:item>
+			</title>
 			<role>
 				<dcscom:dimension>true</dcscom:dimension>
 				<dcscom:parentDimension>АналитикаУчетаНоменклатуры</dcscom:parentDimension>
@@ -3616,16 +3622,6 @@
 			<field>Валюта</field>
 		</field>
 		<field xsi:type="DataSetFieldField">
-			<dataPath>КоличествоПлан</dataPath>
-			<field>КоличествоПлан</field>
-			<title xsi:type="v8:LocalStringType">
-				<v8:item>
-					<v8:lang>ru</v8:lang>
-					<v8:content>Количество план</v8:content>
-				</v8:item>
-			</title>
-		</field>
-		<field xsi:type="DataSetFieldField">
 			<dataPath>Статус</dataPath>
 			<field>Статус</field>
 		</field>
@@ -3799,32 +3795,10 @@
 		<field xsi:type="DataSetFieldField">
 			<dataPath>СуммаПлан</dataPath>
 			<field>СуммаПлан</field>
-			<title xsi:type="v8:LocalStringType">
-				<v8:item>
-					<v8:lang>ru</v8:lang>
-					<v8:content>Сумма план</v8:content>
-				</v8:item>
-			</title>
 		</field>
 		<field xsi:type="DataSetFieldField">
 			<dataPath>ВидФуры</dataPath>
 			<field>ВидФуры</field>
-			<title xsi:type="v8:LocalStringType">
-				<v8:item>
-					<v8:lang>ru</v8:lang>
-					<v8:content>Вид фуры</v8:content>
-				</v8:item>
-			</title>
-		</field>
-		<field xsi:type="DataSetFieldField">
-			<dataPath>КоличествоФакт</dataPath>
-			<field>КоличествоФакт</field>
-			<title xsi:type="v8:LocalStringType">
-				<v8:item>
-					<v8:lang>ru</v8:lang>
-					<v8:content>Количество факт</v8:content>
-				</v8:item>
-			</title>
 		</field>
 		<field xsi:type="DataSetFieldField">
 			<dataPath>СуммаФакт</dataPath>
@@ -3859,8 +3833,58 @@
 				</v8:item>
 			</title>
 		</field>
+		<field xsi:type="DataSetFieldField">
+			<dataPath>ФактПрибыль</dataPath>
+			<field>ФактПрибыль</field>
+			<title xsi:type="v8:LocalStringType">
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Факт прибыль</v8:content>
+				</v8:item>
+			</title>
+		</field>
+		<field xsi:type="DataSetFieldField">
+			<dataPath>ПлановаяПрибыль</dataPath>
+			<field>ПлановаяПрибыль</field>
+			<title xsi:type="v8:LocalStringType">
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Плановая прибыль</v8:content>
+				</v8:item>
+			</title>
+		</field>
+		<field xsi:type="DataSetFieldField">
+			<dataPath>ПлановоеКоличество</dataPath>
+			<field>ПлановоеКоличество</field>
+			<title xsi:type="v8:LocalStringType">
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Плановое количество</v8:content>
+				</v8:item>
+			</title>
+		</field>
+		<field xsi:type="DataSetFieldField">
+			<dataPath>ФактВыручка</dataPath>
+			<field>ФактВыручка</field>
+			<title xsi:type="v8:LocalStringType">
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Факт выручка</v8:content>
+				</v8:item>
+			</title>
+		</field>
+		<field xsi:type="DataSetFieldField">
+			<dataPath>ФактКоличество</dataPath>
+			<field>ФактКоличество</field>
+			<title xsi:type="v8:LocalStringType">
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Факт количество</v8:content>
+				</v8:item>
+			</title>
+		</field>
 		<dataSource>ИсточникДанных1</dataSource>
-		<query>                       ВЫБРАТЬ РАЗРЕШЕННЫЕ
+		<query>ВЫБРАТЬ РАЗРЕШЕННЫЕ
 	ОборотыБюджетовОбороты.Период КАК Период,
 	ОборотыБюджетовОбороты.Подразделение КАК Подразделение,
 	ОборотыБюджетовОбороты.Аналитика3 КАК Номенклатура,
@@ -4020,6 +4044,8 @@
 	ПланыПродажПоВидамФур.Организация КАК Организация,
 	ПланыПродажПоВидамФур.Партнер КАК Партнер,
 	ПланыПродажПоВидамФур.Номенклатура КАК Номенклатура,
+	0 КАК Себестоимость,
+
 	//ВЫБОР
 	//	КОГДА МЕСЯЦ(ПланыПродажПоВидамФур.Период) &gt;= МЕСЯЦ(ВЫРАЗИТЬ(&amp;Сценарий КАК Справочник.СценарииТоварногоПланирования).СценарийБюджетирования.ДействуетС)
 	//		ТОГДА ПланыПродажПоВидамФур.КоличествоПлан
@@ -4045,8 +4071,6 @@
 	0 КАК ПлановаяВыручка,
 	0 КАК ПлановаяПрибыль,
 //////
-  
-	0 КАК Себестоимость,
 	0 КАК КоличествоФакт,
 	0 КАК СуммаФакт,
 	0 КАК ПрибыльФакт,
@@ -4065,9 +4089,9 @@
 	ФактПродажПоВидамФур.Период,
 	ФактПродажПоВидамФур.НоменклатураФура,
 	ФактПродажПоВидамФур.Организация,
-	ФактПродажПоВидамФур.Партнер,
-	ФактПродажПоВидамФур.Себестоимость,
+	ФактПродажПоВидамФур.Партнер, 
 	ФактПродажПоВидамФур.Номенклатура,
+	ФактПродажПоВидамФур.Себестоимость,
 	0,
 	0,
 	0,
@@ -4083,18 +4107,21 @@
 ////////////////////////////////////////////////////////////////////////////////
 ВЫБРАТЬ РАЗРЕШЕННЫЕ
 	втРезультат.Подразделение КАК Подразделение,
-	втРезультат.КоличествоПлан КАК КоличествоПлан,
 	втРезультат.СуммаПлан КАК СуммаПлан,
 	втРезультат.ВидФуры КАК ВидФуры,
 	втРезультат.Период КАК Период,
-	втРезультат.КоличествоФакт КАК КоличествоФакт,
 	втРезультат.СуммаФакт КАК СуммаФакт,
 	втРезультат.НоменклатураФура КАК НоменклатураФура,
 	втРезультат.Организация КАК Организация,
 	втРезультат.Партнер КАК Партнер,
 	-(втРезультат.Себестоимость) КАК Себестоимость,
 	втРезультат.Номенклатура КАК Номенклатура,
-	втРезультат.ПлановаяВыручка КАК ПлановаяВыручка
+	втРезультат.ПлановаяВыручка КАК ПлановаяВыручка,
+	втРезультат.КоличествоПлан КАК ПлановоеКоличество, 
+	втРезультат.ПлановаяПрибыль КАК ПлановаяПрибыль,
+	втРезультат.ВыручкаФакт КАК ФактВыручка,
+	втРезультат.ПрибыльФакт КАК ФактПрибыль,
+	втРезультат.КоличествоФакт КАК ФактКоличество
 ИЗ
 	втРезультат КАК втРезультат</query>
 	</dataSet>
@@ -4107,12 +4134,6 @@
 	<dataSetLink>
 		<sourceDataSet>СебестоимостьПартий</sourceDataSet>
 		<destinationDataSet>ФактПродаж</destinationDataSet>
-		<sourceExpression>Характеристика</sourceExpression>
-		<destinationExpression>Характеристика</destinationExpression>
-	</dataSetLink>
-	<dataSetLink>
-		<sourceDataSet>СебестоимостьПартий</sourceDataSet>
-		<destinationDataSet>ФактПродаж</destinationDataSet>
 		<sourceExpression>ВидФуры</sourceExpression>
 		<destinationExpression>ВидФуры</destinationExpression>
 	</dataSetLink>
@@ -4121,12 +4142,6 @@
 		<destinationDataSet>ФактПродаж</destinationDataSet>
 		<sourceExpression>Подразделение</sourceExpression>
 		<destinationExpression>Подразделение</destinationExpression>
-	</dataSetLink>
-	<dataSetLink>
-		<sourceDataSet>СебестоимостьПартий</sourceDataSet>
-		<destinationDataSet>ФактПродаж</destinationDataSet>
-		<sourceExpression>Склад</sourceExpression>
-		<destinationExpression>Склад</destinationExpression>
 	</dataSetLink>
 	<calculatedField>
 		<dataPath>Номенклатура.ЕдиницаИзмерения</dataPath>
@@ -4291,6 +4306,38 @@
 	<totalField>
 		<dataPath>РасходОбъем</dataPath>
 		<expression>Сумма(РасходОбъем)</expression>
+	</totalField>
+	<totalField>
+		<dataPath>СуммаПлан</dataPath>
+		<expression>Сумма(СуммаПлан)</expression>
+	</totalField>
+	<totalField>
+		<dataPath>СуммаФакт</dataPath>
+		<expression>Сумма(СуммаФакт)</expression>
+	</totalField>
+	<totalField>
+		<dataPath>ПлановаяВыручка</dataPath>
+		<expression>Сумма(ПлановаяВыручка)</expression>
+	</totalField>
+	<totalField>
+		<dataPath>ПлановаяПрибыль</dataPath>
+		<expression>Сумма(ПлановаяПрибыль)</expression>
+	</totalField>
+	<totalField>
+		<dataPath>ПлановоеКоличество</dataPath>
+		<expression>Сумма(ПлановоеКоличество)</expression>
+	</totalField>
+	<totalField>
+		<dataPath>ФактВыручка</dataPath>
+		<expression>Сумма(ФактВыручка)</expression>
+	</totalField>
+	<totalField>
+		<dataPath>ФактКоличество</dataPath>
+		<expression>Сумма(ФактКоличество)</expression>
+	</totalField>
+	<totalField>
+		<dataPath>ФактПрибыль</dataPath>
+		<expression>Сумма(ФактПрибыль)</expression>
 	</totalField>
 	<parameter>
 		<name>Период</name>
@@ -4552,8 +4599,7 @@
 			</v8:DateQualifiers>
 		</valueType>
 		<value xsi:type="xs:dateTime">0001-01-01T00:00:00</value>
-		<useRestriction>true</useRestriction>
-		<expression>ТекущаяДатаСеанса()</expression>
+		<useRestriction>false</useRestriction>
 	</parameter>
 	<parameter>
 		<name>ИсключаемыеХозОперации</name>
@@ -4827,6 +4873,7 @@
 		</valueType>
 		<value xsi:type="xs:boolean">false</value>
 		<useRestriction>true</useRestriction>
+		<use>Always</use>
 	</parameter>
 	<parameter>
 		<name>СтатьяВыручка</name>
@@ -4858,7 +4905,7 @@
 		</valueType>
 		<value xsi:nil="true"/>
 		<useRestriction>true</useRestriction>
-		<expression>Справочники.СтатьиБюджетов.НайтиПоКоду("000000168")</expression>
+		<expression>Справочники.СтатьиБюджетов.НайтиПоКоду("000000316")</expression>
 	</parameter>
 	<parameter>
 		<name>Сценарий</name>
@@ -4873,6 +4920,7 @@
 		</valueType>
 		<value xsi:nil="true"/>
 		<useRestriction>false</useRestriction>
+		<use>Always</use>
 	</parameter>
 	<parameter>
 		<name>ХозяйственнаяОперацияРеализацияВнутр</name>
@@ -4889,24 +4937,15 @@
 		<useRestriction>true</useRestriction>
 	</parameter>
 	<settingsVariant>
-		<dcsset:name>ВедомостьПоПартиямТоваровПредприятия</dcsset:name>
+		<dcsset:name>ДопАсортиментОсновной</dcsset:name>
 		<dcsset:presentation xsi:type="v8:LocalStringType">
 			<v8:item>
 				<v8:lang>ru</v8:lang>
-				<v8:content>Ведомость по партиям товаров предприятия</v8:content>
+				<v8:content>Доп Асортимент (деке внешний) </v8:content>
 			</v8:item>
 		</dcsset:presentation>
 		<dcsset:settings xmlns:style="http://v8.1c.ru/8.1/data/ui/style" xmlns:sys="http://v8.1c.ru/8.1/data/ui/fonts/system" xmlns:web="http://v8.1c.ru/8.1/data/ui/colors/web" xmlns:win="http://v8.1c.ru/8.1/data/ui/colors/windows">
 			<dcsset:selection>
-				<dcsset:item xsi:type="dcsset:SelectedItemField">
-					<dcsset:field>Номенклатура.Артикул</dcsset:field>
-					<dcsset:lwsTitle>
-						<v8:item>
-							<v8:lang>ru</v8:lang>
-							<v8:content>Артикул</v8:content>
-						</v8:item>
-					</dcsset:lwsTitle>
-				</dcsset:item>
 				<dcsset:item xsi:type="dcsset:SelectedItemFolder">
 					<dcsset:lwsTitle>
 						<v8:item>
@@ -5095,6 +5134,42 @@
 					</dcsset:item>
 					<dcsset:placement>Auto</dcsset:placement>
 				</dcsset:item>
+				<dcsset:item xsi:type="dcsset:SelectedItemFolder">
+					<dcsset:lwsTitle>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>План</v8:content>
+						</v8:item>
+					</dcsset:lwsTitle>
+					<dcsset:item xsi:type="dcsset:SelectedItemField">
+						<dcsset:field>ПлановаяВыручка</dcsset:field>
+					</dcsset:item>
+					<dcsset:item xsi:type="dcsset:SelectedItemField">
+						<dcsset:field>ПлановаяПрибыль</dcsset:field>
+					</dcsset:item>
+					<dcsset:item xsi:type="dcsset:SelectedItemField">
+						<dcsset:field>ПлановоеКоличество</dcsset:field>
+					</dcsset:item>
+					<dcsset:placement>Auto</dcsset:placement>
+				</dcsset:item>
+				<dcsset:item xsi:type="dcsset:SelectedItemFolder">
+					<dcsset:lwsTitle>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Факт</v8:content>
+						</v8:item>
+					</dcsset:lwsTitle>
+					<dcsset:item xsi:type="dcsset:SelectedItemField">
+						<dcsset:field>ФактВыручка</dcsset:field>
+					</dcsset:item>
+					<dcsset:item xsi:type="dcsset:SelectedItemField">
+						<dcsset:field>ФактКоличество</dcsset:field>
+					</dcsset:item>
+					<dcsset:item xsi:type="dcsset:SelectedItemField">
+						<dcsset:field>ФактПрибыль</dcsset:field>
+					</dcsset:item>
+					<dcsset:placement>Auto</dcsset:placement>
+				</dcsset:item>
 				<dcsset:viewMode>Normal</dcsset:viewMode>
 				<dcsset:userSettingID>7fca810f-28b4-42c9-a4ff-aeb75595aa8e</dcsset:userSettingID>
 			</dcsset:selection>
@@ -5103,28 +5178,14 @@
 					<dcsset:use>false</dcsset:use>
 					<dcsset:left xsi:type="dcscor:Field">Поставщик</dcsset:left>
 					<dcsset:comparisonType>Equal</dcsset:comparisonType>
+					<dcsset:viewMode>Normal</dcsset:viewMode>
 					<dcsset:userSettingID>ea822994-8a1e-44c3-8647-f5fa8f3a6c36</dcsset:userSettingID>
 				</dcsset:item>
 				<dcsset:item xsi:type="dcsset:FilterItemComparison">
-					<dcsset:use>false</dcsset:use>
 					<dcsset:left xsi:type="dcscor:Field">Склад</dcsset:left>
 					<dcsset:comparisonType>Equal</dcsset:comparisonType>
+					<dcsset:viewMode>Normal</dcsset:viewMode>
 					<dcsset:userSettingID>58309b6f-45fb-4d98-8d25-6e96a88296f0</dcsset:userSettingID>
-				</dcsset:item>
-				<dcsset:item xsi:type="dcsset:FilterItemComparison">
-					<dcsset:use>false</dcsset:use>
-					<dcsset:left xsi:type="dcscor:Field">СегментНоменклатуры</dcsset:left>
-					<dcsset:comparisonType>Equal</dcsset:comparisonType>
-					<dcsset:viewMode>Normal</dcsset:viewMode>
-					<dcsset:userSettingID>6d88f363-3b1f-43db-8476-59f089cfbcdb</dcsset:userSettingID>
-				</dcsset:item>
-				<dcsset:item xsi:type="dcsset:FilterItemComparison">
-					<dcsset:use>false</dcsset:use>
-					<dcsset:left xsi:type="dcscor:Field">Номенклатура</dcsset:left>
-					<dcsset:comparisonType>InListByHierarchy</dcsset:comparisonType>
-					<dcsset:right xsi:nil="true"/>
-					<dcsset:viewMode>Normal</dcsset:viewMode>
-					<dcsset:userSettingID>e7e064bc-f585-4dd3-adbf-b1f057fa2244</dcsset:userSettingID>
 				</dcsset:item>
 				<dcsset:viewMode>Normal</dcsset:viewMode>
 				<dcsset:userSettingID>d5be4a52-1b2f-4ac6-a00b-28c39f21f42a</dcsset:userSettingID>
@@ -5138,21 +5199,20 @@
 					<dcsset:userSettingID>70edb5c4-053f-4335-b5eb-59841532b7fd</dcsset:userSettingID>
 				</dcscor:item>
 				<dcscor:item xsi:type="dcsset:SettingsParameterValue">
+					<dcscor:use>false</dcscor:use>
 					<dcscor:parameter>ДанныеОтчета</dcscor:parameter>
 					<dcscor:value xsi:type="xs:decimal">4</dcscor:value>
 					<dcsset:userSettingID>83bb63af-67c2-4b2b-9ec7-0a5833a95b6e</dcsset:userSettingID>
 				</dcscor:item>
 				<dcscor:item xsi:type="dcsset:SettingsParameterValue">
+					<dcscor:use>false</dcscor:use>
 					<dcscor:parameter>ЕдиницыКоличества</dcscor:parameter>
 					<dcscor:value xsi:type="xs:decimal">0</dcscor:value>
 					<dcsset:viewMode>Normal</dcsset:viewMode>
 					<dcsset:userSettingID>4191c5f0-1c00-482c-aa90-40fab0739471</dcsset:userSettingID>
 				</dcscor:item>
 				<dcscor:item xsi:type="dcsset:SettingsParameterValue">
-					<dcscor:parameter>КоличественныеИтогиПоЕдИзм</dcscor:parameter>
-					<dcscor:value xsi:type="xs:boolean">true</dcscor:value>
-				</dcscor:item>
-				<dcscor:item xsi:type="dcsset:SettingsParameterValue">
+					<dcscor:use>false</dcscor:use>
 					<dcscor:parameter>ИсключаемыеХозОперации</dcscor:parameter>
 					<dcscor:value xsi:type="dcscor:DesignTimeValue">Перечисление.ХозяйственныеОперации.ПеремещениеТоваров</dcscor:value>
 					<dcscor:value xsi:type="dcscor:DesignTimeValue">Перечисление.ХозяйственныеОперации.ЗакупкаВСтранахЕАЭСПоступлениеИзТоваровВПути</dcscor:value>
@@ -5175,17 +5235,6 @@
 					</dcsset:userSettingPresentation>
 				</dcscor:item>
 				<dcscor:item xsi:type="dcsset:SettingsParameterValue">
-					<dcscor:use>false</dcscor:use>
-					<dcscor:parameter>СтатьяВыручка</dcscor:parameter>
-					<dcscor:value xsi:nil="true"/>
-				</dcscor:item>
-				<dcscor:item xsi:type="dcsset:SettingsParameterValue">
-					<dcscor:use>false</dcscor:use>
-					<dcscor:parameter>СтатьяПрибыль</dcscor:parameter>
-					<dcscor:value xsi:nil="true"/>
-				</dcscor:item>
-				<dcscor:item xsi:type="dcsset:SettingsParameterValue">
-					<dcscor:use>false</dcscor:use>
 					<dcscor:parameter>Сценарий</dcscor:parameter>
 					<dcscor:value xsi:nil="true"/>
 				</dcscor:item>
@@ -5269,6 +5318,84 @@
 					</dcscor:value>
 				</dcscor:item>
 			</dcsset:outputParameters>
+			<dcsset:item xsi:type="dcsset:StructureItemGroup">
+				<dcsset:groupItems>
+					<dcsset:item xsi:type="dcsset:GroupItemField">
+						<dcsset:field>ВидФуры</dcsset:field>
+						<dcsset:groupType>Items</dcsset:groupType>
+						<dcsset:periodAdditionType>None</dcsset:periodAdditionType>
+						<dcsset:periodAdditionBegin xsi:type="xs:dateTime">0001-01-01T00:00:00</dcsset:periodAdditionBegin>
+						<dcsset:periodAdditionEnd xsi:type="xs:dateTime">0001-01-01T00:00:00</dcsset:periodAdditionEnd>
+					</dcsset:item>
+				</dcsset:groupItems>
+				<dcsset:order>
+					<dcsset:item xsi:type="dcsset:OrderItemAuto"/>
+				</dcsset:order>
+				<dcsset:selection>
+					<dcsset:item xsi:type="dcsset:SelectedItemAuto"/>
+				</dcsset:selection>
+				<dcsset:item xsi:type="dcsset:StructureItemGroup">
+					<dcsset:groupItems>
+						<dcsset:item xsi:type="dcsset:GroupItemField">
+							<dcsset:field>Подразделение</dcsset:field>
+							<dcsset:groupType>Items</dcsset:groupType>
+							<dcsset:periodAdditionType>None</dcsset:periodAdditionType>
+							<dcsset:periodAdditionBegin xsi:type="xs:dateTime">0001-01-01T00:00:00</dcsset:periodAdditionBegin>
+							<dcsset:periodAdditionEnd xsi:type="xs:dateTime">0001-01-01T00:00:00</dcsset:periodAdditionEnd>
+						</dcsset:item>
+					</dcsset:groupItems>
+					<dcsset:order>
+						<dcsset:item xsi:type="dcsset:OrderItemAuto"/>
+					</dcsset:order>
+					<dcsset:selection>
+						<dcsset:item xsi:type="dcsset:SelectedItemAuto"/>
+					</dcsset:selection>
+					<dcsset:item xsi:type="dcsset:StructureItemGroup">
+						<dcsset:groupItems>
+							<dcsset:item xsi:type="dcsset:GroupItemField">
+								<dcsset:field>Номенклатура</dcsset:field>
+								<dcsset:groupType>Items</dcsset:groupType>
+								<dcsset:periodAdditionType>None</dcsset:periodAdditionType>
+								<dcsset:periodAdditionBegin xsi:type="xs:dateTime">0001-01-01T00:00:00</dcsset:periodAdditionBegin>
+								<dcsset:periodAdditionEnd xsi:type="xs:dateTime">0001-01-01T00:00:00</dcsset:periodAdditionEnd>
+							</dcsset:item>
+							<dcsset:item xsi:type="dcsset:GroupItemField">
+								<dcsset:field>Номенклатура.Артикул</dcsset:field>
+								<dcsset:groupType>Items</dcsset:groupType>
+								<dcsset:periodAdditionType>None</dcsset:periodAdditionType>
+								<dcsset:periodAdditionBegin xsi:type="xs:dateTime">0001-01-01T00:00:00</dcsset:periodAdditionBegin>
+								<dcsset:periodAdditionEnd xsi:type="xs:dateTime">0001-01-01T00:00:00</dcsset:periodAdditionEnd>
+							</dcsset:item>
+						</dcsset:groupItems>
+						<dcsset:order>
+							<dcsset:item xsi:type="dcsset:OrderItemAuto"/>
+						</dcsset:order>
+						<dcsset:selection>
+							<dcsset:item xsi:type="dcsset:SelectedItemAuto"/>
+						</dcsset:selection>
+						<dcsset:item xsi:type="dcsset:StructureItemGroup">
+							<dcsset:use>false</dcsset:use>
+							<dcsset:groupItems>
+								<dcsset:item xsi:type="dcsset:GroupItemField">
+									<dcsset:field>Регистратор</dcsset:field>
+									<dcsset:groupType>Items</dcsset:groupType>
+									<dcsset:periodAdditionType>None</dcsset:periodAdditionType>
+									<dcsset:periodAdditionBegin xsi:type="xs:dateTime">0001-01-01T00:00:00</dcsset:periodAdditionBegin>
+									<dcsset:periodAdditionEnd xsi:type="xs:dateTime">0001-01-01T00:00:00</dcsset:periodAdditionEnd>
+								</dcsset:item>
+							</dcsset:groupItems>
+							<dcsset:order>
+								<dcsset:item xsi:type="dcsset:OrderItemAuto"/>
+							</dcsset:order>
+							<dcsset:selection>
+								<dcsset:item xsi:type="dcsset:SelectedItemAuto">
+									<dcsset:use>false</dcsset:use>
+								</dcsset:item>
+							</dcsset:selection>
+						</dcsset:item>
+					</dcsset:item>
+				</dcsset:item>
+			</dcsset:item>
 			<dcsset:itemsViewMode>Normal</dcsset:itemsViewMode>
 		</dcsset:settings>
 	</settingsVariant>
